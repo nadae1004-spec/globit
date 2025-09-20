@@ -47,7 +47,8 @@
                 <div class="map-frame">
                     <div class="map-image"></div>
                     <div class="map-overlay">
-                        <!-- Observation Points based on Figma Design -->
+                        <!-- Observation Points - 10개 (16°C 7개, 27°C 3개) -->
+                        <!-- 16°C 관측점들 (7개) -->
                         <div class="observation-point" data-x="94" data-y="120">
                             <div class="temp-circle temp-low">16°C</div>
                         </div>
@@ -57,53 +58,25 @@
                         <div class="observation-point" data-x="415" data-y="630">
                             <div class="temp-circle temp-low">16°C</div>
                         </div>
-                        <div class="observation-point" data-x="306" data-y="715">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
                         <div class="observation-point" data-x="213" data-y="827">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
-                        <div class="observation-point" data-x="556" data-y="827">
                             <div class="temp-circle temp-low">16°C</div>
                         </div>
                         <div class="observation-point" data-x="326" data-y="932">
                             <div class="temp-circle temp-low">16°C</div>
                         </div>
-                        <div class="observation-point" data-x="193" data-y="946">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
-                        <div class="observation-point" data-x="363" data-y="1031">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
-                        <div class="observation-point" data-x="11" data-y="612">
-                            <div class="temp-circle temp-high">27°C</div>
-                        </div>
-                        <div class="observation-point" data-x="395" data-y="808">
-                            <div class="temp-circle temp-high">27°C</div>
-                        </div>
-                        <div class="observation-point" data-x="142" data-y="927">
-                            <div class="temp-circle temp-high">27°C</div>
-                        </div>
                         <div class="observation-point" data-x="275" data-y="393">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
-                        <div class="observation-point" data-x="412" data-y="185">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
-                        <div class="observation-point" data-x="470" data-y="190">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
-                        <div class="observation-point" data-x="404" data-y="190">
-                            <div class="temp-circle temp-low">16°C</div>
-                        </div>
-                        <div class="observation-point" data-x="139" data-y="394">
                             <div class="temp-circle temp-low">16°C</div>
                         </div>
                         <div class="observation-point" data-x="209" data-y="545">
                             <div class="temp-circle temp-low">16°C</div>
                         </div>
-                        <div class="observation-point" data-x="498" data-y="957">
-                            <div class="temp-circle temp-low">16°C</div>
+                        
+                        <!-- 27°C 관측점들 (3개) -->
+                        <div class="observation-point" data-x="11" data-y="612">
+                            <div class="temp-circle temp-high">27°C</div>
+                        </div>
+                        <div class="observation-point" data-x="395" data-y="808">
+                            <div class="temp-circle temp-high">27°C</div>
                         </div>
                         <div class="observation-point" data-x="475" data-y="612">
                             <div class="temp-circle temp-high">27°C</div>
@@ -331,28 +304,21 @@
     </footer>
 
     <script>
-        // 관측점 데이터
+        // 관측점 데이터 (10개: 16°C 7개, 27°C 3개)
         const stationData = {
+            // 16°C 관측점들 (7개)
             '94-120': { name: '욕지 연화', code: 'C530001', status: '운영중' },
             '376-343': { name: '육지 연화', code: 'C530002', status: '운영중' },
             '415-630': { name: '거제 연화', code: 'C530003', status: '운영중' },
-            '306-715': { name: '통영 연화', code: 'C530004', status: '운영중' },
-            '213-827': { name: '고성 연화', code: 'C530005', status: '운영중' },
-            '556-827': { name: '남해 연화', code: 'C530006', status: '운영중' },
-            '326-932': { name: '사천 연화', code: 'C530007', status: '운영중' },
-            '193-946': { name: '창원 연화', code: 'C530008', status: '운영중' },
-            '363-1031': { name: '김해 연화', code: 'C530009', status: '운영중' },
-            '11-612': { name: '부산 연화', code: 'C530010', status: '운영중' },
-            '395-808': { name: '울산 연화', code: 'C530011', status: '운영중' },
-            '142-927': { name: '포항 연화', code: 'C530012', status: '운영중' },
-            '275-393': { name: '영덕 연화', code: 'C530013', status: '운영중' },
-            '412-185': { name: '영양 연화', code: 'C530014', status: '운영중' },
-            '470-190': { name: '안동 연화', code: 'C530015', status: '운영중' },
-            '404-190': { name: '청도 연화', code: 'C530016', status: '운영중' },
-            '139-394': { name: '밀양 연화', code: 'C530017', status: '운영중' },
-            '209-545': { name: '양산 연화', code: 'C530018', status: '운영중' },
-            '498-957': { name: '진주 연화', code: 'C530019', status: '운영중' },
-            '475-612': { name: '하동 연화', code: 'C530020', status: '운영중' }
+            '213-827': { name: '고성 연화', code: 'C530004', status: '운영중' },
+            '326-932': { name: '사천 연화', code: 'C530005', status: '운영중' },
+            '275-393': { name: '영덕 연화', code: 'C530006', status: '운영중' },
+            '209-545': { name: '양산 연화', code: 'C530007', status: '운영중' },
+            
+            // 27°C 관측점들 (3개)
+            '11-612': { name: '부산 연화', code: 'C530008', status: '운영중' },
+            '395-808': { name: '울산 연화', code: 'C530009', status: '운영중' },
+            '475-612': { name: '하동 연화', code: 'C530010', status: '운영중' }
         };
 
         // 관측점 위치 설정
