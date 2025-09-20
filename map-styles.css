@@ -1,0 +1,241 @@
+/* Map Styles - Independent CSS for index-map.html */
+/* This file only contains styles for the map area and should not conflict with existing styles */
+
+/* Map Overlay for Map */
+.map-overlay {
+    z-index: 100 !important;
+}
+
+/* Observation Points for Map */
+.observation-point {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    left: 0;
+    top: 0;
+}
+
+.observation-point[data-x][data-y] {
+    left: calc(var(--x, 0px));
+    top: calc(var(--y, 0px));
+}
+
+/* Temperature Circles for Map */
+.temp-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    user-select: none;
+}
+
+.temp-low {
+    background: linear-gradient(90deg, #0064dd 0%, #088ec5 100%);
+}
+
+.temp-high {
+    background: linear-gradient(135deg, #dc5602 12.98%, #f46d19 65.42%, #eca173 100%);
+}
+
+.temp-circle:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Station Popup for Map */
+.station-popup {
+    position: absolute;
+    width: 160px;
+    height: 110px;
+    background-color: #2e2f38;
+    border-radius: 10px;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    transform: translate(-50%, -100%) scale(0.9);
+    margin-top: -10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.station-popup.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -100%) scale(1);
+}
+
+/* Popup Tail */
+.station-popup::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #2e2f38;
+    z-index: 2001;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Popup Tail Shadow */
+.station-popup::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 9px solid rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+}
+
+.station-popup .popup-header {
+    padding: 6px 42px 12px 42px;
+    height: 69px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.station-popup .station-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+
+.station-popup .station-code {
+    background-color: #474752;
+    color: #adaeb9;
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+
+.station-popup .popup-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 30px 0 30px;
+    height: 35px;
+    border-top: 1px solid #5e5e6d;
+    background-color: #2e2f38;
+    border-radius: 0 0 10px 10px;
+}
+
+.station-popup .status {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.station-popup .more-btn {
+    background-color: #fadbcd;
+    color: #fb7c4e;
+    border: 1px solid #fb7c4e;
+    border-radius: 50px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.4px;
+}
+
+.station-popup .more-btn:hover {
+    background-color: #fb7c4e;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.station-popup .close-btn {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 50%;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.station-popup .close-btn:hover {
+    background-color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design for Map */
+@media (max-width: 768px) {
+    .temp-circle {
+        width: 48px;
+        height: 48px;
+        font-size: 14px;
+    }
+    
+    .station-popup {
+        width: 140px;
+        height: 137px;
+    }
+    
+    .station-popup .station-name {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .temp-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+    
+    .station-popup {
+        width: 120px;
+        height: 117px;
+    }
+    
+    .station-popup .station-name {
+        font-size: 16px;
+    }
+}
