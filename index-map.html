@@ -90,10 +90,70 @@
                             </div>
                             <div class="popup-footer">
                                 <div class="status">운영중</div>
-                                <button class="more-btn">더보기</button>
+                                <button class="more-btn" id="moreBtn">더보기</button>
                             </div>
                             <button class="close-btn" id="closePopup">×</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail Popup Modal -->
+            <div class="detail-popup-overlay" id="detailPopupOverlay">
+                <div class="detail-popup" id="detailPopup">
+                    <!-- Header -->
+                    <div class="detail-header">
+                        <h2 class="detail-title">이 위치의 예보</h2>
+                        <button class="detail-close-btn" id="detailCloseBtn">×</button>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div class="detail-content">
+                        <!-- Short-term Forecast Section -->
+                        <div class="forecast-section">
+                            <div class="forecast-header">
+                                <div class="legend">
+                                    <div class="legend-item">
+                                        <div class="legend-dot real-data"></div>
+                                        <span>실측</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot prediction"></div>
+                                        <span>예측</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graph-area">
+                                <div class="graph-placeholder">graph-area</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Location Info Section -->
+                        <div class="location-info-section">
+                            <h3 class="location-title">위치 정보</h3>
+                            <div class="location-details">
+                                <div class="location-item">
+                                    <div class="coordinates">N34°39'3", E128°17'27"<br>Asia/Seoul(+09:00)</div>
+                                </div>
+                                <div class="location-item">
+                                    <div class="sun-info">일출: 6:06<br>일몰: 18:44</div>
+                                </div>
+                                <div class="location-item">
+                                    <div class="twilight-info">황혼: 19:10<br>해발고도: 0m (oft)</div>
+                                </div>
+                                <div class="location-item">
+                                    <div class="model-info">모델 고도: -4m (-14ft)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notification Button -->
+                    <div class="notification-section">
+                        <button class="notification-btn">
+                            <span class="btn-icon">📝</span>
+                            이 위치로 알림 생성
+                        </button>
                     </div>
                 </div>
             </div>
@@ -449,11 +509,41 @@
                 stationPopup.classList.remove('active');
             });
 
-            // 더보기 버튼 클릭 이벤트
+            // 더보기 버튼 클릭 시 상세 팝업 열기
             const moreBtn = document.querySelector('.more-btn');
+            const detailPopupOverlay = document.getElementById('detailPopupOverlay');
+            const detailCloseBtn = document.getElementById('detailCloseBtn');
+            const notificationBtn = document.querySelector('.notification-btn');
+
             moreBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                alert('상세 정보 페이지로 이동합니다.');
+                detailPopupOverlay.classList.add('active');
+                // 기존 팝업 닫기
+                stationPopup.classList.remove('active');
+            });
+
+            // 상세 팝업 닫기
+            detailCloseBtn.addEventListener('click', function() {
+                detailPopupOverlay.classList.remove('active');
+            });
+
+            // 오버레이 클릭 시 상세 팝업 닫기
+            detailPopupOverlay.addEventListener('click', function(e) {
+                if (e.target === detailPopupOverlay) {
+                    detailPopupOverlay.classList.remove('active');
+                }
+            });
+
+            // 알림 생성 버튼 클릭
+            notificationBtn.addEventListener('click', function() {
+                alert('알림 생성 기능이 구현되었습니다!');
+            });
+
+            // ESC 키로 상세 팝업 닫기
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && detailPopupOverlay.classList.contains('active')) {
+                    detailPopupOverlay.classList.remove('active');
+                }
             });
 
             // 관측점 호버 효과
