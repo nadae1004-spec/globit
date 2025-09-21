@@ -54,6 +54,11 @@
     background: linear-gradient(135deg, #dc5602 12.98%, #f46d19 65.42%, #eca173 100%);
 }
 
+/* 27도 아이콘 호버 시 색상 변경 비활성화 */
+.temp-high:hover {
+    background: linear-gradient(135deg, #dc5602 12.98%, #f46d19 65.42%, #eca173 100%) !important;
+}
+
 .temp-circle:hover {
     transform: translate(-50%, -50%) scale(1.15);
     transition: all 0.3s ease;
