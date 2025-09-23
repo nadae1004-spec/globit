@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMapInteraction();
     initializeFormValidation();
     initializeTimeSelection();
+    initializeMapPopups();
     initializeMapTableConnection();
     initializeServiceButtons();
 });
@@ -62,13 +63,6 @@ function initializeStationSelection() {
 // Map Interaction Functionality
 function initializeMapInteraction() {
     const mapPoints = document.querySelectorAll('.map-point');
-    const mapPopup = document.querySelector('.map-popup');
-    const stationData = [
-        { name: '도산 법송', code: 'CS30001', lat: '34.8741', lng: '128.3512', status: '-' },
-        { name: '산양 곤리', code: 'CS30001', lat: '34.8741', lng: '128.3512', status: '-' },
-        { name: '육지 연화', code: 'C530056', lat: '34.6412', lng: '128.3722', status: '운영중' },
-        // Add more station data as needed
-    ];
 
     mapPoints.forEach((point, index) => {
         point.addEventListener('click', function() {
@@ -77,25 +71,6 @@ function initializeMapInteraction() {
             
             // Add active class to clicked point
             this.classList.add('active');
-            
-            // Update popup content
-            if (stationData[index]) {
-                updateMapPopup(stationData[index]);
-            }
-            
-            // Show popup
-            showMapPopup(this);
-        });
-
-        point.addEventListener('mouseenter', function() {
-            if (stationData[index]) {
-                updateMapPopup(stationData[index]);
-                showMapPopup(this);
-            }
-        });
-
-        point.addEventListener('mouseleave', function() {
-            hideMapPopup();
         });
     });
 }
@@ -114,31 +89,6 @@ function updateMapPoints() {
     });
 }
 
-function updateMapPopup(station) {
-    const popup = document.querySelector('.map-popup');
-    const header = popup.querySelector('.popup-header h3');
-    const code = popup.querySelector('.station-code');
-    const status = popup.querySelector('.popup-status span');
-    
-    header.textContent = station.name;
-    code.textContent = station.code;
-    status.textContent = station.status;
-}
-
-function showMapPopup(point) {
-    const popup = document.querySelector('.map-popup');
-    const rect = point.getBoundingClientRect();
-    const containerRect = document.querySelector('.map-container').getBoundingClientRect();
-    
-    popup.style.left = (rect.left - containerRect.left - 80) + 'px';
-    popup.style.top = (rect.top - containerRect.top - 120) + 'px';
-    popup.style.display = 'block';
-}
-
-function hideMapPopup() {
-    const popup = document.querySelector('.map-popup');
-    popup.style.display = 'none';
-}
 
 // Form Validation (Simplified)
 function initializeFormValidation() {
@@ -231,6 +181,54 @@ function updateTableRowHighlight(checkbox) {
     } else {
         row.style.backgroundColor = '';
     }
+}
+
+// Map Popup Functionality
+function initializeMapPopups() {
+    const mapPoints = document.querySelectorAll('.map-point');
+    
+    const stationData = [
+        { name: '육지 연화', code: 'C530002', status: '운영중' },
+        { name: '거제 연화', code: 'C530003', status: '점검중' },
+        { name: '통영 연화', code: 'C530004', status: '운영중' },
+        { name: '고성 연화', code: 'C530005', status: '운영중' },
+        { name: '사천 연화', code: 'C530006', status: '운영중' },
+        { name: '남해 연화', code: 'C530007', status: '운영중' },
+        { name: '하동 연화', code: 'C530008', status: '운영중' },
+        { name: '진주 연화', code: 'C530009', status: '운영중' },
+        { name: '창원 연화', code: 'C530010', status: '운영중' },
+        { name: '김해 연화', code: 'C530011', status: '운영중' },
+        { name: '양산 연화', code: 'C530012', status: '운영중' },
+        { name: '밀양 연화', code: 'C530013', status: '운영중' },
+        { name: '울산 연화', code: 'C530014', status: '점검중' },
+        { name: '부산 연화', code: 'C530015', status: '운영중' },
+        { name: '거제 연화2', code: 'C530016', status: '운영중' },
+        { name: '통영 연화2', code: 'C530017', status: '운영중' }
+    ];
+
+    mapPoints.forEach((mapPoint, index) => {
+        // Skip if popup already exists
+        if (mapPoint.querySelector('.map-popup')) return;
+
+        const data = stationData[index];
+        if (!data) return;
+
+        const popup = document.createElement('div');
+        popup.className = 'map-popup';
+        popup.innerHTML = `
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3>${data.name}</h3>
+                    <div class="station-code">${data.code}</div>
+                </div>
+                <div class="popup-status">
+                    <span>${data.status}</span>
+                </div>
+            </div>
+        `;
+        
+        mapPoint.appendChild(popup);
+    });
 }
 
 // Map and Table Connection
