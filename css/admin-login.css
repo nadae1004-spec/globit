@@ -259,99 +259,91 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1000px) {
-    .login-card {
-        padding: 30px;
-    }
-}
 
-@media (max-width: 800px) {
-    .login-container {
-        padding: 15px;
-    }
-    
-    .login-card {
-        padding: 25px;
-        border-radius: 20px;
-    }
-    
-    .login-title {
-        font-size: 22px;
-    }
-    
-    .admin-badge span {
-        font-size: 14px;
-    }
-    
-    .input-wrapper input {
-        font-size: 15px;
-    }
-    
-    .login-button {
-        font-size: 18px;
-    }
-}
+/* PC 버전 (기본) - 481px 이상 */
+/* 기본 스타일이 PC 버전 */
+/* 디자인 요소들의 크기는 480px까지 변하지 않음 */
 
+/* 모바일 버전 - 480px 이하 */
 @media (max-width: 480px) {
     .login-container {
         padding: 10px;
+        min-height: 100vh;
+        align-items: flex-start;
+        padding-top: 20px;
     }
     
-    .login-card {
-        padding: 20px;
-        border-radius: 15px;
+    .login-wrapper {
+        max-width: 100%;
+        width: 100%;
     }
     
+    /* 헤더는 모바일에서도 동일한 크기 유지 */
     .login-header {
-        padding: 20px 0;
+        padding: 25px 0;
+        /*border-bottom: 1px solid #e4e4e6;*/
     }
     
     .logo h1 {
-        font-size: 20px;
+        font-size: 24px; /* PC와 동일한 크기 유지 */
     }
     
     .logo-icon {
-        width: 45px;
-        height: 42px;
+        width: 54px; /* PC와 동일한 크기 유지 */
+        height: 50px;
+    }
+    
+    /* 로그인 카드는 모바일에서도 동일한 크기 유지 */
+    .login-card {
+        padding: 40px; /* PC와 동일한 패딩 유지 */
+        border-radius: 30px; /* PC와 동일한 border-radius 유지 */
+        /*box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);*/
     }
     
     .login-title {
-        font-size: 20px;
+        font-size: 24px; /* PC와 동일한 크기 유지 */
     }
     
     .admin-badge {
-        padding: 5px 10px;
+        padding: 6px 12px; /* PC와 동일한 패딩 유지 */
     }
     
     .admin-badge span {
-        font-size: 13px;
+        font-size: 16px; /* PC와 동일한 크기 유지 */
     }
     
+    /* 입력 필드는 모바일에서도 동일한 크기 유지 */
     .input-wrapper {
-        height: 45px;
-        padding: 0 15px;
+        height: 50px; /* PC와 동일한 높이 유지 */
+        padding: 0 20px; /* PC와 동일한 패딩 유지 */
     }
     
     .input-wrapper input {
-        font-size: 14px;
+        font-size: 16px; /* PC와 동일한 크기 유지 */
     }
     
+    /* 로그인 버튼은 모바일에서도 동일한 크기 유지 */
     .login-button {
-        height: 45px;
-        font-size: 16px;
+        height: 50px; /* PC와 동일한 높이 유지 */
+        font-size: 20px; /* PC와 동일한 크기 유지 */
     }
     
-    .footer-links {
-        flex-direction: column;
-        gap: 10px;
+    /* 푸터는 모바일에서도 동일한 크기 유지 */
+    .login-footer {
+        padding: 20px 0; /* PC와 동일한 패딩 유지 */
+        /*border-top: 1px solid #e4e4e6;*/
     }
     
     .footer-link {
-        font-size: 14px;
+        font-size: 15px; /* PC와 동일한 크기 유지 */
     }
     
     .copyright {
-        font-size: 13px;
+        font-size: 15px; /* PC와 동일한 크기 유지 */
+    }
+    
+    .footer-links {
+        gap: 20px; /* PC와 동일한 간격 유지 */
     }
 }
 
