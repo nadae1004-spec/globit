@@ -38,12 +38,60 @@ document.addEventListener('DOMContentLoaded', async function() {
         loadComponent('/components/footer.html', 'footer-placeholder')
     ]);
     
+    // 개인정보처리방침 모달 로드
+    await loadPrivacyPolicyModal();
+    
+    // 공공데이터 이용안내 모달 로드
+    await loadPublicDataModal();
+    
     // 네비게이션 활성화 설정
     setActiveNavigation();
     
     // 헤더의 햄버거 메뉴 기능 (헤더 로드 후 실행)
     initializeHeaderFunctions();
+    
+    // 개인정보처리방침 모달 초기화
+    if (typeof initializePrivacyPolicyModal === 'function') {
+        setTimeout(() => {
+            initializePrivacyPolicyModal();
+        }, 100);
+    }
+    
+    // 공공데이터 이용안내 모달 초기화
+    if (typeof initializePublicDataModal === 'function') {
+        setTimeout(() => {
+            initializePublicDataModal();
+        }, 100);
+    }
 });
+
+// 개인정보처리방침 모달 로드 함수
+async function loadPrivacyPolicyModal() {
+    try {
+        const response = await fetch('/components/privacy-policy-modal.html');
+        const html = await response.text();
+        // body 끝에 모달 추가
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = html;
+        document.body.appendChild(modalContainer.firstElementChild);
+    } catch (error) {
+        console.error('Error loading privacy policy modal:', error);
+    }
+}
+
+// 공공데이터 이용안내 모달 로드 함수
+async function loadPublicDataModal() {
+    try {
+        const response = await fetch('/components/public-data-modal.html');
+        const html = await response.text();
+        // body 끝에 모달 추가
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = html;
+        document.body.appendChild(modalContainer.firstElementChild);
+    } catch (error) {
+        console.error('Error loading public data modal:', error);
+    }
+}
 
 // 헤더 관련 기능 초기화
 function initializeHeaderFunctions() {
